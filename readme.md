@@ -1,9 +1,21 @@
-#ASCII Art Video : Bad Apple
+# ASCII Art Video : Bad Apple
 
-##Play Bad Apple!
+## Play ASCII Art Video
 
 ```
-$ python run.py
+$ python run.py -i path/to/video_dir
+# ex:
+$ python run.py -i data/bad_apple/
+```
+
+## Generate ASCII Art Video
+
+```
+# Download mp4 file and rename to "video.mp4"
+
+$ python generate generate_ascii_art.py -i path/to/video_dir
+# ex:
+$ python generate generate_ascii_art.py -i data/bad_apple/
 ```
 
 ##Dependencies

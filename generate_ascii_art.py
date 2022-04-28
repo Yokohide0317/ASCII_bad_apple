@@ -5,7 +5,6 @@ import time
 import cv2
 from tqdm import tqdm
 
-video_length = 218
 
 ASCII_CHARS = '$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/\|()1{}[]?-_+~<>i!lI;:,"^`\'. '
 
@@ -36,7 +35,9 @@ def map_pixels_to_ascii_chars(image, range_width=3.69):
 
     return "".join(pixels_to_chars)
 
-def convert_image_to_ascii(image, new_width=150, new_height=45):
+def convert_image_to_ascii(image, new_height_width):
+    new_height = new_height_width[1]
+    new_width = new_height_width[0]
     image = scale_image(image, new_width, new_height)
     image = convert_to_grayscale(image)
 
@@ -48,38 +49,59 @@ def convert_image_to_ascii(image, new_width=150, new_height=45):
 
     return "\n".join(image_ascii)
 
-def handle_image_conversion(image_filepath):
+def handle_image_conversion(_image_filepath, _new_height_width):
     image = None
     try:
-        image = Image.open(image_filepath)
+        image = Image.open(_image_filepath)
     except:
         print("Unable to open image file {image_filepath}.".format(image_filepath=image_filepath))
         return
-    image_ascii = convert_image_to_ascii(image)
+    image_ascii = convert_image_to_ascii(image, _new_height_width)
     return image_ascii
+
+def get_video_prop(_mp4_file):
+    vidcap = cv2.VideoCapture(_mp4_file)
+    video_frame_count = vidcap.get(cv2.CAP_PROP_FRAME_COUNT) # Get Num of Frame
+    video_fps = vidcap.get(cv2.CAP_PROP_FPS)                 # Get Frame Rate
+    video_length = video_frame_count / video_fps # Get Length of Video
+
+    return vidcap, video_length
+
+def set_frame_size(size):
+    size_dict = {
+        "small": [50, 15],
+        "medium": [100, 30],
+        "large": [150, 45],
+        "xlarge": [200, 60]
+    }
+    height_width = size_dict[size]
+    return height_width
 
 if __name__=='__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('-i', '--input', required=True)
+    parser.add_argument('-s', '--size', default="medium", choices=["small", "medium", "large", "xlarge"])
+
     args = parser.parse_args()
     input_path = args.input
     txt_file = os.path.join(input_path, "play.txt")
     mp4_file = os.path.join(input_path, "video.mp4")
     jpg_file = os.path.join(input_path, "output.jpg")
 
-
-    vidcap = cv2.VideoCapture(mp4_file)
     time_count = 0
     frames = []
+    vidcap, video_length, = get_video_prop(mp4_file)
     total = int(video_length*1000)
+
+    new_height_width = set_frame_size(args.size)
+
     pbar = tqdm(total=total)
     while time_count <= total:
-        #print('Generating ASCII frame at ' + str(time_count))
         vidcap.set(0, time_count)
         success, image = vidcap.read()
         if success:
             cv2.imwrite(jpg_file, image)
-        frames.append(handle_image_conversion(jpg_file))
+        frames.append(handle_image_conversion(jpg_file, new_height_width))
         time_count = time_count + 100
         pbar.update(100)
     pbar.close()

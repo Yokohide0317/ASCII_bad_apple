@@ -1,11 +1,13 @@
 # ASCII Art Video : Bad Apple
 
+This repository was forked from (Chion82/ASCII_bad_apple)[https://github.com/Chion82/ASCII_bad_apple]
+
 ## Play ASCII Art Video
 
 ```
 $ python run.py -i path/to/video_dir
 # ex:
-$ python run.py -i data/bad_apple/
+$ python run.py -i sample/bad_apple/
 ```
 
 ## Generate ASCII Art Video
@@ -15,7 +17,7 @@ $ python run.py -i data/bad_apple/
 
 $ python generate generate_ascii_art.py -i path/to/video_dir
 # ex:
-$ python generate generate_ascii_art.py -i data/bad_apple/
+$ python generate generate_ascii_art.py -i sample/bad_apple/
 ```
 
 ##Dependencies

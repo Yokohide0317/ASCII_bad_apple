@@ -1,6 +1,6 @@
 # ASCII Art Video : Bad Apple
 
-This repository was forked from (Chion82/ASCII_bad_apple)[https://github.com/Chion82/ASCII_bad_apple]
+This repository was forked from [Chion82/ASCII_bad_apple](https://github.com/Chion82/ASCII_bad_apple)
 
 ## Play ASCII Art Video
 

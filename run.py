@@ -5,8 +5,8 @@ import argparse
 if __name__ == '__main__':
 
     parser = argparse.ArgumentParser()
-    parser.add_argument('-i', '--input', required=True)
-
+    #parser.add_argument('-i', '--input', required=True)
+    parser.add_argument("input")
     args = parser.parse_args()
     input_path = args.input
     txt_file = os.path.join(input_path, "play.txt")
@@ -22,3 +22,5 @@ if __name__ == '__main__':
         os.system('clear')
         print(frames[int((time.time()-init_time)*10)])
         time.sleep(0.05)
+    time.sleep(1)
+    exit()

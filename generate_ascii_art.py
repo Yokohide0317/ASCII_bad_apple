@@ -69,9 +69,9 @@ def get_video_prop(_mp4_file):
 
 def set_frame_size(size):
     size_dict = {
-        "small": [50, 15],
-        "medium": [100, 30],
-        "large": [150, 45],
+        "small": [100, 30],
+        "medium": [120, 36],
+        "large": [160, 48],
         "xlarge": [200, 60]
     }
     height_width = size_dict[size]
@@ -79,7 +79,8 @@ def set_frame_size(size):
 
 if __name__=='__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('-i', '--input', required=True)
+    #parser.add_argument('-i', '--input', required=True)
+    parser.add_argument("input")
     parser.add_argument('-s', '--size', default="medium", choices=["small", "medium", "large", "xlarge"])
 
     args = parser.parse_args()

@@ -5,9 +5,9 @@ This repository was forked from [Chion82/ASCII_bad_apple](https://github.com/Chi
 ## Play ASCII Art Video
 
 ```
-$ python run.py -i path/to/video_dir
+$ python run.py path/to/video_dir
 # ex:
-$ python run.py -i sample/bad_apple/
+$ python run.py sample/bad_apple/
 ```
 
 ## Generate ASCII Art Video
@@ -15,9 +15,9 @@ $ python run.py -i sample/bad_apple/
 ```
 # Download mp4 file and rename to "video.mp4"
 
-$ python generate generate_ascii_art.py -i path/to/video_dir
+$ python generate generate_ascii_art.py path/to/video_dir
 # ex:
-$ python generate generate_ascii_art.py -i sample/bad_apple/
+$ python generate generate_ascii_art.py sample/bad_apple/
 ```
 
 ##Dependencies
